@@ -1,0 +1,92 @@
+{% extends '../main_mobile.html' %} 
+{% load widget_tweaks %} 
+{% block body %}
+<form role="form" action="" method="POST">
+    {% csrf_token %}
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <span class="category-name">Informacione personale</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 ml-auto">
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Emri i shfaqur: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.display_name class="w-100" placeholder="Shenoni emrin" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Emer: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.first_name class="w-100" placeholder="Shenoni emrin" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Mbiemer: </label>
+                </div>
+                <div class=" col mb-2">
+                    {% render_field form.last_name class="w-100" placeholder="Shenoni mbiemrin" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Telefon: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.phone_number class="w-100" placeholder="Shenoni nr telefon" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col ml-2 mr-2">
+            <hr />
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <span class="category-name">Profili</span>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 ml-auto">
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Email: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.email class="w-100" placeholder="Shenoni emailin" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Password: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.password1 class="w-100" %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col mb-2">
+                    <label class="">Password: </label>
+                </div>
+                <div class="col mb-2">
+                    {% render_field form.password2 class="w-100" %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-2 m-auto">
+            <input class="btn btn-primary" type="submit" value="Ruaj!">
+        </div>
+    </div>
+</form>
+
+{% endblock %}

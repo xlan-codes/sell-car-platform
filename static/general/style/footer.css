@@ -1,0 +1,48 @@
+.footerBackground {
+    background-color:rgb(62, 62, 62);
+    width:100%;
+    height: auto;
+    position: absolute;
+}
+
+.about{
+    color:white;
+    margin-top: 0.1rem;
+    
+}
+
+.socialmedia{
+    padding: 40px;
+    margin:20px;
+}
+.image{
+    width:2.5rem !important;
+    height:2.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+.images{
+    width:2.5rem !important;
+    height:2.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+.rreth{
+    margin-left: 25rem;
+}
+.social{
+    margin-left: 37rem;
+}
+.insta{
+    margin-left:1rem;
+}
+.face{
+    margin-left: -20rem;
+}
+.mobile{
+    margin-left:15px;
+    padding-top: 1px;
+
+}
+.rrjetet{
+    margin-left:36%;
+    margin-top: 15%;
+}

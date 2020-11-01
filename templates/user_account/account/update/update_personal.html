@@ -1,0 +1,35 @@
+{% load widget_tweaks %}
+
+<div class="row">
+    <div class="col-2 ml-auto">
+        <div class="row">
+            <div class="col mb-2">
+                <label class="">Emer: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <label class="">Mbiemer: </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mb-2">
+                <label class="">Telefon: </label>
+            </div>
+        </div>
+    </div>
+    <div class="col-7 mr-auto">
+        <form role="form" action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-2">
+                {% render_field form.first_name class="w-75" placeholder="Shenoni emrin" %}
+            </div>
+            <div class="mb-2">
+                {% render_field form.last_name class="w-75" placeholder="Shenoni mbiemrin" %}
+            </div>
+            <div class="mb-2">
+                {% render_field form.phone_number class="w-75" placeholder="Shenoni nr telefon" %}
+            </div>
+        </form>
+    </div>
+</div>

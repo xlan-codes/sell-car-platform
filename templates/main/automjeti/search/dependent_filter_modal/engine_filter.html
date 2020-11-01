@@ -1,0 +1,39 @@
+<!-- Modal -->
+<!-- Will be included with ajax -->
+<div class="modal filter-modal" id="engine" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="engineLabel">Motorri</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="engineModalBody">
+          <div class="row">
+            {% if engines|length > 0 %}
+            {% if engines|length > 2 %}
+            {% for option in engines %}
+            <div class="col-md-4">
+            <button onclick="filterEngine('{{option.name}}')" class="btn btn-link">{{option.name}}</button>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% for option in engines %}
+            <div class="col-md-6">
+                <button onclick="filterEngine('{{option.name}}')" class="btn btn-link">{{option.name}}</button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% else %}
+              <p class="ml-4 font-weight-bolder">Zgjidh modelin e makines</p>
+            {% endif %}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+          <button type="button" class="btn btn-primary">Apliko</button>
+        </div>
+      </div>
+    </div>
+  </div>

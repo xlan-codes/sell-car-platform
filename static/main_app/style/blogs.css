@@ -1,0 +1,28 @@
+.hr{
+   margin-left: 45%;
+   margin-right: 45%;
+   border: 3px solid red;
+}
+.card{
+    width:20rem;
+    height:20rem;
+}
+.cutoff-text {
+    width: 18rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-title{
+      /* margin-top:1rem; */
+      padding:1rem;
+  }
+  a {
+    color: black;
+  }
+  a:hover {
+    color:blue ;
+  }
+  .lexo{
+    padding-bottom:1rem;
+  }

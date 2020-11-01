@@ -1,0 +1,76 @@
+{% load static %}
+{% load humanize %}
+
+{% if list %}
+{% for vehicle in list %}
+<div class="container-fluid shadow rounded whitebox mb-5">
+    <div class="row">
+        <div class="col-lg-3 px-0 pb-2">
+            <a href="automjet?id={{vehicle.vehicle.id}}&seller={{vehicle.vehicle.user.id}}">
+                {% if vehicle.gallery.0.photo %}
+                <img class="img-responsive img-fluid border main-vehicle-img" src="{{ vehicle.gallery.0.photo }}" onclick="" alt="vehicle_img"/>
+                {% else %}
+                <img class="img-responsive img-fluid border fit-image" src="{% static 'general/img/not_available.png' %}" onclick="" alt="vehicle_img"/>
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-lg-7 border-right mt-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                       <span><a href="automjet?id={{vehicle.vehicle.id}}&seller={{vehicle.vehicle.user.id}}" class="car-link heavy-link">{{ vehicle.vehicle.production_year }} {{vehicle.vehicle.engine_type.model.make}} {{vehicle.vehicle.engine_type.model}}</a></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 block-with-text">
+                        {% if not vehicle.vehicle.description %}
+                        <textbox>Body: {{vehicle.vehicle.body_type}}, Fuel: {{vehicle.vehicle.fuel_type}}, Transimisioni: {{vehicle.vehicle.transmission_type}}</textbox>
+                        {% else %}
+                        <textbox>{{ vehicle.vehicle.description }}</textbox>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <span><b>Kilometra </b>{{vehicle.vehicle.mileage}} km</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="container-fluid">
+                <div class="row mt-3">
+                    <span><b>{{vehicle.vehicle.price|intcomma}} {{vehicle.vehicle.currency.tag}}</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-lg-12">
+            <!-- Will loop album here -->
+            <div class="list-group list-group-horizontal">
+                {% for pic in vehicle.gallery %}
+                {% if not forloop.counter0 == 0 %}
+                {% if forloop.counter0 < 6 %}
+                <img style="width: 15%; height: auto;" class="img-responsive img-fluid px-0 mr-1 border" src="{{ pic.photo }}" alt="logo"/>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row pb-1">
+        <div class="col-lg-6 ">
+          <img class="img-responsive img-fluid logo" src="{% static 'general/img/icon.png' %}">
+        </div>
+        <div class="col-lg-6 ">
+            <!-- <span>Position</span> -->
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="center-text">
+    <p class="no-content">Asnje veture</p>
+</div>
+{% endif %}

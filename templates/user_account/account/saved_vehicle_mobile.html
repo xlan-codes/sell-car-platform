@@ -1,0 +1,35 @@
+{% extends '../main_mobile.html' %}
+{% load static %}
+
+{% block body %}
+<link rel="stylesheet" href="{% static 'user_account/style/saved_vehicle.css' %}" type="text/css" />
+<div class="row">
+    <div class="col">
+        <div class="items mb-3">
+            <!-- will loop here -->
+            {% for save in saved %}
+            <div class="item">
+                <div class="m-4">
+                    <img
+                    class="img-responsive img-fluid"
+                    src="{{ save.gallery.photo }}"
+                    alt="vehicle_main_img"
+                    />
+                    <a href="/automjet?id={{save.vehicle.id}}" class="ml-4 black-link center-align"><b><p>{{ save.vehicle.engine_type.model.make }} </br> {{save.vehicle.engine_type.model}}</p></b></a>
+                    <p class="black-link center-align">{{save.vehicle.vehicle.production_year}}</p>
+                    <p class="black-link center-align">{{save.vehicle.vehicle.engine_type}}</p>
+                    <p class="black-link center-align">{{save.vehicle.vehicle.exterior_color}}</p>
+                    <p class="black-link center-align">{{save.vehicle.user}}</p>
+                    <p class="center-align">
+                    <button id="addCompare" onclick="addForCompare({{save.vehicle.vehicle.id}})" class="btn btn-secondary">Krahaso</button>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    generateLink();
+</script>
+{% endblock %}

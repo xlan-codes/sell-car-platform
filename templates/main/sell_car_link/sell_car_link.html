@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+{% load static %}
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'main_app\style\sell_car_link\sell_car_link.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <span class="text2"> Shit Automjetin </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <img class="img2" src="{% static 'main_app\img\CtaSell_cars.png' %}" alt="My image" >
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <button class="btn btn-danger rounded w-25" id="posto" type="button"><a href="shitje" class="text-light"> Postoje Falas </a></button>
+        </div>
+    </div>
+</div>

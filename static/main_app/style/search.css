@@ -1,0 +1,91 @@
+.whitebox {
+  background-color: white;
+}
+
+.container-large {
+  max-width: 6000px;
+  width: 75rem;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: #14709e;
+  font-weight: 800;
+  float: left;
+  padding: 8px 16px !important;
+  text-decoration: none;
+}
+
+.heavy-link {
+  color: #14709e;
+  font-weight: 1000;
+}
+
+.red-border {
+  border-left: 2px solid red !important;
+}
+
+.logo {
+  max-height: 3.5em;
+  max-width: unset;
+}
+
+.fit-image {
+  max-width: 10em;
+  max-height: 12em;
+}
+
+.main-vehicle-img {
+  max-width: 15rem;
+  max-height: auto;
+}
+
+.modal-pos {
+  position: absolute;
+  top: 3em;
+  right: 5em;
+  bottom: 0;
+  left: 2me;
+  z-index: 10040;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+.col-mini {
+  max-width: 200px;
+}
+
+.sorter {
+  background-color: transparent;
+  color: #14709e;
+  border: none;
+  font-weight: 500;
+}
+
+.sorter select {
+  display: none; /*hide original SELECT element: */
+}
+
+.search-filter-color {
+  color: #838383;
+}
+
+.increase-container-size {
+  width: 13rem;
+  margin-left: -2rem !important;
+}
+
+.cutoff-text {
+  width: 6rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-content {
+  font-size: 2rem;
+  font-weight: 600;
+}

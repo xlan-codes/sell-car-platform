@@ -1,0 +1,39 @@
+{% load static %}
+<div class="row mt-3 mr-2">
+    <div class="col-4">
+    </div>
+    <div class="col-2">
+        <div id="compareOne">
+            {% if compared.0 %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{{compared.photo}}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% else %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareTwo">
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareThree">
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareFour">
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+        </div>
+    </div>
+</div>

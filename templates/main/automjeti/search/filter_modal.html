@@ -1,0 +1,473 @@
+<!-- Modal -->
+<div class="modal filter-modal" id="{{filter.search_option_tag}}" tabindex="-1" role="dialog"
+  aria-labelledby="filterModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="{{filter.filter}}Label">{{filter.search_option_name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="{{filter.search_option_tag}}ModalBody">
+        {% include './modal_types/modal_type_one.html' %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal filter-modal" id="seller" tabindex="-1" role="dialog" aria-labelledby="filterModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sellerLabel">Shitesi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="sellerModalBody">
+        {% for option in filters.sellers %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" class="form-check-input seller-options" checked
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" class="btn btn-primary" onclick="filterSeller()" data-dismiss="modal">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="make" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="makeLabel">Marka</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="makeModalBody">
+        <div class="row">
+          {% if filters.makes.total > 2 %}
+          {% for option in filters.makes %}
+          <div class="col-md-4">
+            <button onclick="filterMake('{{option}}')" class="btn btn-link">{{option}}</button>
+          </div>
+          {% endfor %}
+          {% else %}
+          {% for option in filters.makes %}
+          <div class="col-md-6">
+            <button onclick="filterMake('{{option}}')" class="btn btn-link">{{option}}</button>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<!-- Will be included with ajax -->
+<div id="includedModelModal">
+  {% include './dependent_filter_modal/model_filter.html' %}
+</div>
+<!-- Modal -->
+<!-- Will be included with ajax -->
+<div id="includedEngineModal">
+  {% include './dependent_filter_modal/engine_filter.html' %}
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="year" tabindex="-1" role="dialog" aria-labelledby="filterModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="yearLabel">Viti</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="yearModalBody">
+        <div class="modal_type_three form-group">
+          <div class="row m-auto">
+            <div class="col">
+              <label class="filter-input-min">Viti Min.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="min-year" type="number" class="rounded" />
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <label class="">Viti Max.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="max-year" type="number" class="rounded" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button onclick="filterYear()" type="button" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="currency" tabindex="-1" role="dialog" aria-labelledby="currencyModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bodyLabel">Monedha</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="currencyModalBody">
+        {% for option in filters.currencies %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input currency-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterCurrency()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="price" tabindex="-1" role="dialog" aria-labelledby="priceModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="priceLabel">Cmimi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="priceModalBody">
+        <div class="modal_type_three form-group">
+          <div class="row m-auto">
+            <div class="col">
+              <label class="filter-input-min">Cmimi Min.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="min-price" type="number" class="rounded" />
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <label class="">Cmimi Max.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="max-price" type="number" class="rounded" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterPrice()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="body" tabindex="-1" role="dialog" aria-labelledby="bodyModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bodyLabel">Trupi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="bodyModalBody">
+        {% for option in filters.bodies %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input body-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterBody()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="exColor" tabindex="-1" role="dialog" aria-labelledby="exColorModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exColorLabel">Ngjyra e jashme</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="exColorModalBody">
+        {% for option in filters.exColor %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input exColor-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterExColor()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="inColor" tabindex="-1" role="dialog" aria-labelledby="inColorModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inColorLabel">Ngjyra e brendshme</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="inColorModalBody">
+        {% for option in filters.exColor %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input inColor-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterInColor()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="mileage" tabindex="-1" role="dialog" aria-labelledby="mileageModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mileageLabel">Kilometrazhi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="mileageModalBody">
+        <div class="modal_type_three form-group">
+          <div class="row m-auto">
+            <div class="col">
+              <label class="filter-input-min">Min.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="min-mile" type="number" class="rounded" />
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <label class="">Max.</label>
+            </div>
+          </div>
+          <div class="row m-auto">
+            <div class="col">
+              <input id="max-mile" type="number" class="rounded" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterMileage()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="drivetrain" tabindex="-1" role="dialog" aria-labelledby="drivetrainsModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="drivetrainsLabel">Drejtimi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="drivetrainsModalBody">
+        {% for option in filters.drivetrains %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input drivetrain-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterDrivetrain()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="fuel" tabindex="-1" role="dialog" aria-labelledby="fuelsModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fuelsLabel">Karburant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="fuelsModalBody">
+        {% for option in filters.fuels %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input fuel-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterFuel()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="cylinder" tabindex="-1" role="dialog" aria-labelledby="cylindersModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cylindersLabel">Cilindrata</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="cylindersModalBody">
+        {% for option in filters.cylinders %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input cylinder-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterCylinder()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="transmission" tabindex="-1" role="dialog" aria-labelledby="transmissionModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="transmissionLabel">Transmisioni</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="transmissionModalBody">
+        {% for option in filters.transmissions %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input transmission-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterTransmission()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="seating_cap" tabindex="-1" role="dialog" aria-labelledby="seating_capsModal"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="seating_capsLabel">Kapaciteti</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="yearModalBody">
+        {% for option in filters.seating_caps %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input seating_cap-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterSeatingCap()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal filter-modal" id="door" tabindex="-1" role="dialog" aria-labelledby="doorsModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="doorsLabel">Dyer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="doorsModalBody">
+        {% for option in filters.doors %}
+        <label class="form-check-label d-block ml-4">
+          <input id="{{option.id}}" type="checkbox" checked class="form-check-input door-options"
+            value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fshi</button>
+        <button type="button" onclick="filterDoor()" class="btn btn-primary">Apliko</button>
+      </div>
+    </div>
+  </div>
+</div>

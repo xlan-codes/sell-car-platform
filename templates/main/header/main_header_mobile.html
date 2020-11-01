@@ -1,0 +1,78 @@
+<!-- basic serach for mobile -->
+{% load widget_tweaks %}
+{% load static %}
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'main_app\style\basic_search\basic_search_mobile.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+
+<!-- Header Image -->
+<img class="img1" src="{% static 'main_app\img\header.jpg' %}" alt="My image" style="width: 100%;">
+<div class="container-fluid generic-background">
+    <div class="row mb-1 pb-2 pt-3">
+        <div class="col-sm-12 text1">
+            <span class="text1"> Zgjidh nga {{count}} Makina & Automjete </span>
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <select onchange="loadModelsForBaseSearch(this)" name="dropdown" id="multiselect" class="form-control" size="1">
+                <option selected disabled> Zgjidhni Marken </option>
+                {% for make in make %}
+                    <option value="{{ make }}">{{ make }}</option>      
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <select name="dropdown" id="baseSearchModel" onchange="modelBase(this)" class="form-control" size="1">
+                <option selected disabled> Zgjidhni Modelin </option>
+                {% for model in models %}
+                    <option>{{ model }}</option>      
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <input hidden id="baseCurrHidden" value="{{currency.0.id}}">
+                <select onchange="priceBase(this)" class="form-control ">
+                    <option selected disabled> Cmimi Max ne EUR </option>
+                    <option value="1">1 EUR</option>      
+                    <option value="500">500 EUR</option>      
+                    <option value="1000">1,000 EUR</option>      
+                    <option value="3000">3,000 EUR</option>      
+                    <option value="5000">5,000 EUR</option>      
+                    <option value="10000">10,000 EUR</option>      
+                    <option value="15000">15,000 EUR</option>      
+                    <option value="20000">20,000 EUR</option>      
+                    <option value="30000">30,000 EUR</option>      
+                    <option value="50000">50,000 EUR</option>      
+                    <option value="100000">100,000 EUR</option>      
+                    <option value="200000">200,000 EUR</option>      
+                    <option value="500000">500,000 EUR</option>      
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-0 mb-4 pt-3">
+        <div class="col-md-12 pb-3">
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input id="used" onchange="conditionBase()" type="checkbox" class="form-check-input"> E Perdorur
+                </label>
+            </div>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                    <input id="new" onchange="conditionBase()" type="checkbox" class="form-check-input"> E Re
+                </label>
+            </div>
+            <button onclick="search()" class="btn btn-danger rounded w-25 float-right" id="kerko" type="button">Kerko</button>
+        </div>
+    </div>
+</div>

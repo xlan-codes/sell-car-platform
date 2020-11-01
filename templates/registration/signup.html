@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'user_account\style\signup.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+{% block nav %}
+
+{% if form.errors %}
+    {% if form.errors.phone %}
+        <p class="error_msg">Vendosni numrin e sakte te celularit!</p>
+    {% elif form.errors.email %}
+        <p>Ky email eshte i ne perdorim</p>
+    {% elif form.errors.password2 %}
+        <p class="error_msg">Rishkruani Password-in: <br>
+          Password-et duhen te jene te njejte,<br>
+          Duhet te kene minimalisht 8 karaktere,<br>
+          Duhet te kene nderthurje te shkronjave dhe numrave.
+        </p>
+    {% endif %}
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+  <p>Your account doesn't have access to this page. To proceed,
+  please login with an account that has access.</p>
+{% else %}
+  <p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+
+{% if not user.is_authenticated %}
+<!-- Hidden only on xs /desktop -->
+<img class="img-responsive img-fluid mb-3" src="{% static 'general/img/header1.jpg' %}" alt="next" />
+<div class="d-none d-sm-block">
+  <div class="background-main">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="container">  
+        <div class="row m-4">
+          <div class="col-md-5 m-auto">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-12 center-text">
+                  <h3 class="text-info">Sign up</h3>
+              </div>
+            </div>
+              <div class="card-body">
+              <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.first_name class="form-control" placeholder="Emri" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.last_name class="form-control" placeholder="Mbiemri" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone-square fa-lg"></i></span>
+                  </div>
+                  {% render_field form.phone class="form-control" placeholder="Numri i Celularit" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class='fas fa-envelope-square' aria-hidden="true"></i></span>
+                  </div>
+                  {% render_field form.email class="form-control" placeholder="Shto Email-in tend" %}
+                </div>
+                <div class="message" id="message_mail">
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  {% render_field form.password1 class="form-control" placeholder="Passowrd" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  {% render_field form.password2 class="form-control" placeholder="Passowrd" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.seller_type_id|append_attr:"onchange:change_seller_type(this)" class="form-control" placeholder="Tipi" %}
+                </div>
+                <div id="dealer-extra-options">
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {% render_field form.logo class="form-control" %}
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {% render_field form.website class="form-control" placeholder="Website" %}
+                  </div>
+                </div>
+                <div class="row align-items-center ml-4">
+                  <input class="form-check-input" type="checkbox">Remember Me
+                </div>
+                <div class="form-group ">
+                  <input type="submit" value="Sign Up" class="btn btn-primary float-right signup_btn">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Hidden only on sm / mobile -->
+<div class="d-block d-sm-none">
+  <div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="container">  
+        <div class="row mb-4">
+          <div class="col-md-5 m-auto">
+            <div class="card">
+              <div class="row">
+                <div class="col-md-12">
+                  <h3 class="text-info">Sign up</h3>
+              </div>
+            </div>
+              <div class="card-body">
+              <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.first_name class="form-control" placeholder="Emri" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.last_name class="form-control" placeholder="Mbiemri" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone-square fa-lg"></i></span>
+                  </div>
+                  {% render_field form.phone class="form-control" placeholder="Numri i Celularit" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class='fas fa-envelope-square' aria-hidden="true"></i></span>
+                  </div>
+                  {% render_field form.email class="form-control" placeholder="Shto Email-in tend" %}
+                </div>
+                <div class="message" id="message_mail">
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  {% render_field form.password1 class="form-control" placeholder="Passowrd" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  {% render_field form.password2 class="form-control" placeholder="Passowrd" %}
+                </div>
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  </div>
+                  {% render_field form.seller_type_id|append_attr:"onchange:change_seller_type(this)" class="form-control" placeholder="Tipi" %}
+                </div>
+                <div id="dealer-extra-options-mobile">
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {% render_field form.logo class="form-control" %}
+                  </div>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    {% render_field form.website class="form-control" placeholder="Website" %}
+                  </div>
+                </div>
+                <div class="row align-items-center ml-4">
+                  <input class="form-check-input" type="checkbox">Remember Me
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Sign Up" class="btn btn-primary float-right signup_btn">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% else %}
+
+<meta http-equiv="REFRESH" content="0;url={% url 'user_profile' %}">
+
+{% endif %}
+
+<script src="{% static 'user_account/js/register.js' %}"></script>
+{% endblock %}

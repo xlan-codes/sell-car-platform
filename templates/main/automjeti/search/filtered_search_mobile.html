@@ -1,0 +1,56 @@
+{% load static %}
+{% load humanize %}
+
+{% if list %}
+{% for vehicle in list %}
+<div class="container-fluid shadow rounded whitebox mb-5 content">
+    <div class="row">
+        <div class="col-lg-3 px-0 pb-2 center-text">
+            <a href="automjet?id={{vehicle.vehicle.id}}&seller={{vehicle.vehicle.user.id}}">
+                {% if vehicle.gallery.0.photo %}
+                <img class="img-responsive img-fluid border" src="{{ vehicle.gallery.0.photo }}" onclick="" alt="vehicle_img"/>
+                {% else %}
+                <img class="img-responsive img-fluid border fit-image" src="{% static 'general/img/not_available.png' %}" onclick="" alt="vehicle_img"/>
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-lg-7 border-right mt-2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 center-text">
+                       <span><a href="automjet?id={{vehicle.vehicle.id}}&seller={{vehicle.vehicle.user.id}}" class="car-link heavy-link">{{ vehicle.vehicle.production_year }} {{vehicle.vehicle.engine_type.model.make}} {{vehicle.vehicle.engine_type.model}}</a></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 block-with-text">
+                        {% if not vehicle.vehicle.description %}
+                        <textbox>Body: {{vehicle.vehicle.body_type}}, Fuel: {{vehicle.vehicle.fuel_type}}, Transimisioni: {{vehicle.vehicle.transmission_type}}</textbox>
+                        {% else %}
+                        <textbox>{{ vehicle.vehicle.description }} lo</textbox>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 mt-2 center-text">
+                        <span><b>Kilometra </b>{{vehicle.vehicle.mileage}} km</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="container-fluid">
+                <div class="row mt-1">
+                    <diiv class="col center-text">
+                        <span><b>{{vehicle.vehicle.price|intcomma}} {{vehicle.vehicle.currency.tag}}</b></span>
+                    </diiv>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="center-text">
+    <p class="no-content">Asnje veture</p>
+</div>
+{% endif %}

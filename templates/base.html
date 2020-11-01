@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% include "base-links.html" %}
+    {% block links %}{% endblock %}
+</head>
+<body class="background font-style">
+    <div class="container-fluid w-100 p-0 m-0">
+
+        <div class="d-block d-sm-none">
+            {% include 'general/header/header_mobile.html' with options=header_options %}
+        </div>
+        <div class="d-none d-md-block d-xl-block">
+            {% include 'general/header/header.html' with options=header_options %}
+        </div>
+
+    {% block nav %}
+
+    {% endblock %}
+
+    {% block login %}
+
+    {% endblock %}
+
+    {% block body_section %}
+
+    {% endblock %}
+   
+    {% block footer %}
+
+    {% endblock %}
+
+        <div class="d-block d-sm-none">
+            {% include "./general/footer/footer_mobile.html" %}
+        </div>
+        <div class="d-none d-md-block d-xl-block">
+            {% include "./general/footer/footer.html" %}
+        </div>
+
+    </div>
+    
+    {% load static %}
+    <script src="{% static 'general/js/windows-size.js' %}"></script>
+    <script src="{% static 'main_app/js/filter.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* * {
+    margin: 0;
+    padding: 0;
+  }
+  
+.items {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .items .item {
+    max-width: 15rem;
+    min-width: 15rem;
+    height: auto;
+    background: white;
+    margin: 0.5rem;
+    border-style: groove;
+  }
+
+  .resize-img {
+    max-width: 5rem;
+  }
+
+  .center-align {
+    text-align: center;
+  } */

@@ -1,0 +1,62 @@
+{% extends '../../../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block links %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block body_section %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <h2> Mirësevini në Automjet.al </h2>
+        </div>
+    </div>
+    <hr class="" style="border: 3px solid red;  margin-right: 40%; margin-left: 40%;">
+    <div class="row mb-4 mt-4">
+        <div class="col-sm-12" style="text-align: center;">
+            <p> Për herë të parë në Shqipëri hapet automjet.al, dyqani i vetëm online ku do të gjeni informacion për shit-blerjen e automjeteve, të reja dhe të përdorura, si edhe për pjesë këmbimi të çdo lloj automjeti. </p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <img class="img-responsive img-fluid" src="{% static 'main_app\img\automjet.al.png' %}" alt="My image" >
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+           <p> Automjet.al, risi në tregun online shqiptar, vjen tani pranë jush edhe me publikimin e ankandeve të makinave. Dërgoni ofertën tuaj për automjetin ose produktin që dëshironi të blini apo të shisni, vetëm me një click nëpërmjet sms ose e-mail tek automjet.al </p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <img class="img-responsive img-fluid" src="{% static 'main_app\img\car_parts.jpg' %}" alt="My image" >
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <p> Pjesë këmbimi të reja dhe të përdorura dhe çdo lloj aksesori që ju nevojitet për makinën tuaj do e gjeni më shpejt duke klikuar tek automjet.al. Tani nuk do humbni më kohë duke pyetur sa në një dyqan tek tjetri, për të gjetur pjesët e këmbimit të makinës që ju nevojiten. </p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <img class="img-responsive img-fluid" src="{% static 'main_app\img\find_vehicle.jpg' %}" alt="My image" >
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-sm-12">
+           <p> Mjafton nje click në automjet.al dhe ne ju tregojmë se ku mund ta gjeni produktin e kërkuar duke renditur nga çmimi më i ulët tek më i lartë. </p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <img class="img-responsive img-fluid" src="{% static 'main_app\img\community.jpg' %}" alt="My image" >
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <p> Sa më shumë përdorues dhe produkte, aq më të larta janë shanset të gjeni atë që ju duhet për automjetin tuaj në momentin e duhur! </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

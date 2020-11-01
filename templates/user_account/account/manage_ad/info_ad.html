@@ -1,0 +1,193 @@
+{% extends '../../main.html' %} 
+{% load widget_tweaks %} 
+{% load humanize %}
+{% block body %}
+<div class="row">
+    <div class="col ml-2 mr-2">
+        <hr />
+    </div>
+</div>
+<form>
+    {% csrf_token %}
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <span class="category-name">Informacionet e makines:</span>
+        </div>
+    </div>
+    {{vehicle.type}}
+    <div class="row">
+        <div class="col-12 ml-auto">
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Titulli: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    <span class="category-name"> {{vehicle}} {{ vehicle.extra_name }} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Kategoria: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    <span class="category-name"> {{ vehicle.type.name }} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Marka: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.engine_type.model.make }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Modeli: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.engine_type.model }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Monedha: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.currency }}
+                    <!-- {% render_field form.currency class="w-100" placeholder="Shenoni Monedhen" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Cmimi: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.price|intcomma }}
+                    <!-- {% render_field form.price class="w-100" placeholder="Shenoni Cmimin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Viti: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.production_year }}
+                    <!-- {% render_field form.production_year class="w-100" placeholder="Shenoni Vitin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Gjendja: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.condition_type }}
+                    <!-- {% render_field form.condition_type class="w-100" placeholder="Shenoni Gjendjen" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Tipi i Motorrit: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.engine_type }}
+                    <!-- {% render_field form.engine_type class="w-100" placeholder="Shenoni Tipin i Motorrit" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Diferenciali: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.drivetrain_type }}
+                    <!-- {% render_field form.drivetrain_type class="w-100" placeholder="Shenoni Diferencialin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Transmetuesi: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.transmission_type }}
+                    <!-- {% render_field form.transmission_type class="w-100" placeholder="Shenoni Transmetuesin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Tipi: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.body_type }}
+                    <!-- {% render_field form.body_type class="w-100" placeholder="Shenoni Tipin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Ngjyra e jashtme: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.exterior_color }}
+                    <!-- {% render_field form.exterior_color class="w-100" placeholder="Shenoni Ngjyren e jashtme" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Ngjyra e brendeshme: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.interior_color }}
+                    <!-- {% render_field form.interior_color class="w-100" placeholder="Shenoni Ngjyren e brendeshme" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Kilometrazhi: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.mileage|intcomma }} KM
+                    <!-- {% render_field form.mileage class="w-100" placeholder="Shenoni Kilometrazhin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Numri i dyerve: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.door_type }}
+                    <!-- {% render_field form.door_type class="w-100" placeholder="Shenoni Numrin e dyerve" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Karburanti: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.fuel_type }}
+                    <!-- {% render_field form.fuel_type class="w-100" placeholder="Shenoni Karburantin" %} -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-2">
+                    <label class="">Pershkrimi: </label>
+                </div>
+                <div class="col-6 mb-2">
+                    {{ vehicle.interior_color }}
+                    <!-- {% render_field form.description rows='3' class="w-100" placeholder="Shenoni Pershkrimin" %} -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <a class="btn btn-secondary " href="{% url 'update_ad' %}?id={{vehicle.id}}">Ndrysho</a>
+            <!-- <input class="btn btn-primary w-100" type="submit" value="Ruaj!"> -->
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col ml-2 mr-2">
+      <hr />
+    </div>
+  </div>
+
+{% endblock %}

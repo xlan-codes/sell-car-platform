@@ -1,0 +1,8 @@
+  {% if models|length > 0 %}
+  <option selected disabled> Zgjidhni Modelin </option>
+  {% for model in models %}
+  <option>{{ model }}</option>      
+  {% endfor %}
+  {% else %}
+  <option selected disabled> Zgjidhni Marken </option>
+  {% endif %}

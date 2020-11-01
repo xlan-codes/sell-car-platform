@@ -1,0 +1,56 @@
+{% extends '../../../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block links %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock %}
+
+{% block body_section %}
+<div class="container">
+    <div class="row">
+        <div  class="col-md-6">
+            <div class="form">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3> Na Kontaktoni </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p> Më shumë se thjesht makina! </p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12 mt-2">
+                        {% render_field form.name class="form-control" placeholder="Emri" %}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        {% render_field form.email class="form-control" placeholder="Email" %}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        {% render_field form.phone class="form-control" placeholder="Numri i celularit" %}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        {% render_field form.message class="form-control" placeholder="Mesazhi" %}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-8 m-auto">
+                      <input class="btn btn-success w-100 rounded rounded-submit pb-2 pt-2" type="submit"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <img class="img-responsive img-fluid" style="height: 120%;" src="{% static 'main_app/img/loading_vehicles.gif' %}" alt="My image" >
+        </div>
+    </div>
+</div>
+{% endblock %}

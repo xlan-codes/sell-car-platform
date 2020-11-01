@@ -1,0 +1,315 @@
+{% extends "../../../base.html" %} {% load static %} 
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'main_app/style/category.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+{% block body_section %}
+
+
+<div class="row">
+    <div class="col-10 m-auto">
+        <!-- <div class="row">
+            <div class="col">
+              <div class="category"></div>
+            </div>
+          </div> -->
+          
+          <div class="row mb-3 ml-4">
+            <div class="col-10 m-auto">
+              <div class="category ml-4">
+                {% for body in list %}
+                <button id="{{body.name}}CategoryOption" onclick="bodyFilterCategory('{{body.name}}')" class="button mr-3 heavy-link convertible">
+                  <img
+                    src="{% static 'main_app/img/categories/image1.png' %}"
+                    class="img"
+                  />
+                  {{body}}
+                </button>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3 ml-4">
+            <div class="col-1 mt-2 ml-4">
+              <h6 class="refine">Persos opsionet nga :</h6>
+            </div>
+            <div class="col-1">
+              <button class="button">Pastro </button>
+            </div>
+          </div>
+          
+          <div class="row mb-3 ml-4">
+            <div class="col-2 ml-4">
+              <div class="row">
+                <div class="category ml-4 mb-3">
+                  <button
+                    class="btn btn-secondary btn-light dropdown-toggle"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseprice"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Cmimi
+                  </button>
+                  <div class="collapse" id="collapseprice">
+                    <div class="card card-body">
+                      <!-- Info do te vije nga databasa -->
+                      <a class="dropdown-item" href="#"> &lt;$15k </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">$15k-$20k</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">$20k-$25k</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">$25k-$30k</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">$30k-$35k</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> &gt;$35k </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="category ml-4 mb-3">
+                  <button
+                    class="btn btn-secondary btn-light dropdown-toggle"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapsemake"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Tipi
+                  </button>
+                  <div class="collapse" id="collapsemake">
+                    <div
+                      class="card card-body"
+                      data-spy="scroll"
+                      data-target="#list-example"
+                      data-offset="0"
+                      class="scrollspy-example"
+                    >
+                      <a class="dropdown-item" href="#"> Acura</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Alfa Romeo</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Aston Martin</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Audi</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Bently</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Bmw </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Buick </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Cadillac </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Chevrolet </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Chrysler</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Ferrari</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Fiatt </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Ford </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Genesis </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> GMC</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Honda </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Hundai </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Infiniti</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Jaguar</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Jeep </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Karma </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Kia </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Lamborghini </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Land Rover </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Lexus</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Maserati </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Mazda</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> McLaren</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Mercedes-Benz</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Mini</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Mitsubishi</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Nissan</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Polestar</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Porsche</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Ram</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Rolls-Royce</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Smart</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Subaru</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Tesla</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Toyota</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#"> Volkswagen</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">Volvo</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="category ml-4 mb-3">
+                  <button
+                    class="btn btn-secondary btn-light dropdown-toggle"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapsedrivetrain"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Drivetrain
+                  </button>
+                  <div class="collapse" id="collapsedrivetrain">
+                    <div class="card card-body">
+                      <a class="dropdown-item" href="#"> AWD </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">4WD</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">FWD</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">RWD</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="category ml-4 mb-3">
+                  <button
+                    class="btn btn-secondary btn-light dropdown-toggle"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseSeating"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Kapaciteti i ulëseve
+                  </button>
+                  <div class="collapse" id="collapseSeating">
+                    <div class="card card-body">
+                      <a class="dropdown-item" href="#">2 seats </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">5 seats</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">6 seats</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">7 seats</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">8 seats</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">9+ seats</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="category ml-4 mb-3">
+                  <button
+                    class="btn btn-secondary btn-light dropdown-toggle"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapseYear"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    Viti
+                  </button>
+                  <div class="collapse" id="collapseYear">
+                    <div class="card card-body">
+                      <a class="dropdown-item" href="#">2020 </a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">2021</a>
+                      <a class="dropdown-divider" href="#"></a>
+                      <a class="dropdown-item" href="#">2019</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="col-9">
+              <h3 class="new">Makinat e Reja per Shitje</h3>
+              <p>
+                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+              </p>
+              <div class="row">
+                <!-- <label class="display"> Display:</label>
+                <select class="drop" name="numbers" id="numbers">
+                  <option value="12">12</option>
+                  <option value="36">36</option>
+                  <option value="60">60</option>
+                  <option value="84">84</option>
+                  <option value="All">All</option>
+                </select> -->
+          
+                <div class="col">
+                  <label class="sort"> Rendit:</label>
+                  <select name="numbers" id="numbers">
+                    <option value="Price Low to Hight">Nga Cmimi Ulet te me i Larti</option>
+                    <option value="Price Hight to Low">Nga Cmimi Lart te me i Uleti</option>
+                    <option value="Make: A to Z">Sheno: A to Z</option>
+                    <option value="Make: Z to A">Sheno: Z to A</option>
+                    <option value="Year: New to Old">Viti: Nga e Re te e Vjeter</option>
+                    <option value="Year: Old to New">Viti: Nga e Vjeter te e Re </option>
+                  </select>
+                </div>
+              </div>
+              <div id="filterdCategoryVehicle" class="row">
+              {% include './filtered_field.html' %}
+              </div>
+              <!-- <div class="row">
+                {% for new in vehicle %}
+                <div class="col-3 mb-3">
+                  <div class="card mb-1">
+                    <img
+                      src="{% static 'main_app/img/makinaa.png' %}"
+                      class="m-auto image"
+                    />
+                    <a class="dropdown-divider" href="#"></a>
+                    <span class="card-title m-auto"> {{new.model}} </span>
+                    <a href="#" class="btn btn-primary inventory m-auto m-2"
+                      >See inventory</a
+                    >
+                  </div>
+                </div>
+                {% endfor %}
+              </div> -->
+            </div>
+          </div>
+    </div>
+</div>
+
+<script src="{% static 'main_app/js/category.js' %}"></script>
+{% endblock %}

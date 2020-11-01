@@ -1,0 +1,21 @@
+<!-- only on mobile -->
+{% load static %}
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="text-center"> Kerko sipas modelit </h2>
+      </div>
+    </div>
+    <hr class="hr">
+    <!-- Will loop here -->
+    <div class="row">
+    {% for body in bodies %}
+      <div class="col-6">
+        <a href="{% url 'main_app:category' %}?category={{body.name}}">
+          <img class="img-responsive img-fluid" src="{% static '\main_app\img\categories\convertible.png' %}" alt="img1">
+          <span class="heavy-link">{{ body.name }} </span>
+        </a>
+      </div>
+      {% endfor %} 
+    </div>
+  </div>

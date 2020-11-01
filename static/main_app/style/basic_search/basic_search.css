@@ -1,0 +1,33 @@
+
+.generic-background {
+    background-color: #2e2d2d;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.generic-background2 {
+    background-color: #666;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.text1 {
+    color: white;
+    margin-left: 10%;
+}
+
+#kerko {
+    margin-left: 55%;
+}
+
+.img1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: max-content;
+}
+
+.imgmargin {
+    margin-top: 17%;
+}

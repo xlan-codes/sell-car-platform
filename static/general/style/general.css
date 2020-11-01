@@ -1,0 +1,40 @@
+@font-face {
+    font-family: Roboto-Light;
+    src: local(Roboto-Light),
+        url('../fonts/roboto/Roboto-Light.ttf') format("truetype");
+}
+
+.decreaseFont {
+    font-size: 92%;
+}
+
+.background {
+    background-color: #eee;
+}
+
+.font-style {
+    font-family: Roboto-Light  'Courier New', Courier, monospace 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif !important;
+}
+
+.btn-link {
+    color: #14709e ;
+    font-weight: 500;
+  }
+
+.heavy-link {
+    color: #14709e ;
+    font-weight: 500;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.icon-size {
+    width: 5.5em;
+}
+
+.link-unstyled {
+    color: white;
+    text-decoration: none; /* no underline */
+  }

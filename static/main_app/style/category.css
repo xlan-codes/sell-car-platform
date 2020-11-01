@@ -1,0 +1,95 @@
+/* .category{
+    
+    background-color:none;
+    font-size: 15px;
+    margin-left: 40rem;
+}
+
+.refine{
+    font-size:11px;
+}
+
+.new{
+    text-align: center;
+}
+
+.btn-light{
+    color: black;
+    text-decoration: none;
+    background-color:white;
+}
+
+.button {
+  background-color: white;
+  border: none;
+  text-align: center;
+  font-size: 15px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  border-style: groove;
+
+  }
+
+  .button:hover {opacity: 1}
+
+.display{
+    margin-left: 50rem;
+
+}
+.drop{
+    width:45px;
+    height: 25px;
+}
+
+.vehicle{
+  margin-left: 50rem;
+}
+.coupe{
+    width:6rem;
+    height:5rem;
+}
+.convertible{
+    width:7rem;
+    height:5rem;
+}
+.img{
+    width:3.4rem;
+    height:3.4rem;
+}
+.seeall{
+    width:4rem;
+    height:4rem;
+}
+.img-in-cat{
+    width:90%;
+    height:90%;
+}
+.inventory{
+    height: 40px;
+}
+
+.selected-option {
+    background-color: #9d9fdb52;
+}
+.inventory_mobile{
+    height:3rem;
+    width:12rem;
+    margin-left:6rem;
+    
+}
+.image_mobile{
+    width:40%;
+    height:50%;
+}
+.hr{
+    margin-left: 45%;
+    margin-right: 45%;
+    border: 3px solid red;
+ }
+ .makinatereja{
+     margin-left: 3rem;
+ } */

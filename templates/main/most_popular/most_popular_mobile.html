@@ -1,0 +1,51 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'main_app/style/most_popular.css' %}" type="text/css" />
+
+<div class="container ">
+    <div class="row ">
+        <h4 class="most_popular ml-4">Most Popular Cars in Albania</h4>
+        <!-- <ul class="items mb-3 " id="myTab" role="tablist">
+            <li class="nav-item ">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">National</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Toronto</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Montreal</a>
+            </li>
+            <li class="nav ">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Calgary</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Ottawa</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Edmonton</a>
+            </li>
+            <li class="nav ">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Hamilton</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Vancouver</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Mississauga</a>
+            </li>
+            <li class="nav">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Winnipeg</a>
+            </li>
+            <li class="nav ">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="!#" role="tab" aria-controls="profile" aria-selected="false">Saakatoon</a>
+            </li>
+        </ul> -->
+
+        
+        <div class="items mb-3">
+            {% include "./item.html" with items=items %}
+            
+        </div>
+
+    </div>
+
+</div>

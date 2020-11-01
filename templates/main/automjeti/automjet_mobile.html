@@ -1,0 +1,331 @@
+{% extends '../../base.html' %}
+{% load static %}
+{% load humanize %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'main_app/style/vehicle.css' %}" type="text/css" />
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhtbZq9KkPF8d0Yv01D7OLiMOElLzCToA&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+{% endblock %}
+{% block body_section %}
+<p id="addressP" hidden>{{location.address}}</p>
+<p id="geolocationP" hidden>{{location.geolocation}}</p>
+<div class="container-fluid shadow border sticky-top ">
+  <div class="row">
+    <div id="vehicle_images_carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="img-responsive img-fluid " src="{{ album.0.photo }}" alt="vehicle_main_img" />
+        </div>
+        {% for entry in album %}
+        <div class="carousel-item">
+          {% if album.1 %}
+          <img class="img-responsive img-fluid border" src="{{ entry.photo }}" alt="vehicle_sec_img" />
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#vehicle_images_carousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#vehicle_images_carousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <div class="row mt-2 mb-0 container-background">
+    <div class="col">
+      <h5><b>{{ vehicle_data.production_year }} {{ vehicle_data.engine_type.model.make }}
+          {{ vehicle_data.engine_type.model }}</b></h5>
+    </div>
+  </div>
+  <div class="row mt-0 container-background">
+    <div class="col">
+      <span class="superscript">{{ vehicle_data.mileage }} km | {{location.address}}</span>
+    </div>
+  </div>
+  <div class="row mt-0 mb-2 container-background">
+    <div class="col-6">
+      <span><b>{{ vehicle_data.currency.tag }}</b> {{ vehicle_data.price|intcomma }}</span>
+    </div>
+    <div class="col-6">
+      <b>{{ vehicle_data.condition_type }} Vehicle</b>
+    </div>
+  </div>
+
+  <div class="row container-background mb-0 border-bottom">
+    <div class="col">
+      {% if not user.seller_type_id == 'private' %}
+      {% if user.logo %}
+      <img class="seller-icon" src="{{user.logo.url}}" alt="seller_logo" />
+      {% else %}
+      {% if user.display_name %}
+      <span class="">{{ user.display_name }}</span>
+      {% else %}
+      <span class="">{{ user.first_name }} {{user.last_name}}</span>
+      {% endif %}
+      {% endif %}
+      {% else %}
+      <h4 class="d-flex align-items-center justify-content-center">
+        Shitesi privat
+      </h4>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row mt-0 mb-2 container-background">
+    <div class="col">
+      <h2 class="d-flex align-items-center justify-content-center">
+        {{ user.phone }}
+      </h2>
+    </div>
+  </div>
+  <div class="row mb-0 container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Highlights</span>
+    </div>
+  </div>
+  {% for highlight in highlights %}
+  <div class="row mt-0 mb-0 container-background">
+    <span class="mr-2">&#x2714; {{highlight}}</span>
+  </div>
+  {% endfor %}
+  <div class="row mt-2 mb-0 container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Pershkrimi</span>
+    </div>
+  </div>
+  <div class="row mt-0 container-background">
+    {% if vehicle_data.description %}
+    <textbox class="collapse" id="collapseDesc">
+      {{vehicle_data.description}}
+    </textbox>
+    {% else %}
+    <textbox class="collapse" id="collapseDesc">
+      Asnje pershkrimin.
+    </textbox>
+    {% endif %}
+  </div>
+  <div class="row mt-0 container-background">
+    <div class="col">
+      <span><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseDesc"
+          aria-expanded="false" aria-controls="collapseDesc">Shfaq pershkrimin</button></span>
+    </div>
+  </div>
+  <div class="row mt-2 container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Karakteristika</span>
+    </div>
+  </div>
+  <div class="row mt-0 container-background">
+    <div class="collapse" id="collapseSpecs">
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Kilometra</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.mileage}} km</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Gjendja</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.condition_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Trupi</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.body_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Motori</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.engine_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Cilindra</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.cylinders}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Kambio</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.transmission_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Drivetrain</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.drivetrain_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Ngjyra e jashtme</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.exterior_color}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Ngjyra e brendshme</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.interior_color}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Kapaciteti</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.seating_cap}} person/a</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Dyer</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.door_type}}</span>
+        </div>
+      </div>
+      <div class="row mt-2 border-bottom">
+        <div class="col-6">
+          <span>Karburanti</span>
+        </div>
+        <div class="col-6">
+          <span>{{vehicle_data.fuel_type}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-0 container-background">
+    <div class="col">
+      <span><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSpecs"
+          aria-expanded="false" aria-controls="collapseSpecs">Shfaq karakteristikat</button></span>
+    </div>
+  </div>
+  <div class="row mt-2 container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Opzione shtese</span>
+    </div>
+  </div>
+  <div class="row mt-0 mb-2 container-background">
+    {% for option in options %}
+    <div class="col-4 m-auto border-bottom">
+      <span> {{option}} </span>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Konsumi</span>
+    </div>
+  </div>
+  {% if vehicle_data.consumption_city %}
+  <div class="row mt-0 container-background">
+    <div class="col mr-auto">
+      <span class="heavy-link">Qytet: {{vehicle_data.consumption_city}} l/100 km</span>
+    </div>
+  </div>
+  {% endif %}
+  {% if vehicle_data.consumption_highway %}
+  <div class="row mt-0 container-background">
+    <div class="col mr-auto">
+      <span class="heavy-link">Autostrad: {{vehicle_data.consumption_highway}} l/100 km</span>
+    </div>
+  </div>
+  {% endif %}
+  {% if vehicle_data.consumption_combined %}
+  <div class="row mt-0 container-background">
+    <div class="col mr-auto">
+      <span class="heavy-link">Kombinuar: {{vehicle_data.consumption_combined}} l/100 km</span>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row mt-2 container-background">
+    <div class="col mr-auto">
+      <span class="superscript">Shitesi</span>
+    </div>
+  </div>
+  <div class="row mt-0 mb-2 container-background">
+    <div class="col-12">
+      <!-- <button class="btn btn-link dropdown-toggle" type="button" id="mapDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Shiko ne harte
+      </button> -->
+      <!-- <button type="button" class="btn btn-link" data-toggle="modal" data-target="#mapModalMobile">
+        Shiko ne harte
+      </button> -->
+    </div>
+    {% if vehicle_data.user.website %}
+    <div class="col-12">
+      <button type="button" class="btn btn-link">
+        Website i shitesit
+      </button>
+    </div>
+    {% endif %}
+    <div class="col-12">
+      <button type="button" class="btn btn-link">
+        Me shume nga ky shites
+      </button>
+    </div>
+  </div>
+  <!-- <div class="row mt-4">
+    <div class="dropdown-menu" aria-labelledby="mapDropdown">
+      <div id="map"></div>
+    </div>
+  </div> -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <span class="superscript">{{location.address}}</span>
+    </div>
+      <div id="map"></div>
+  </div>
+
+  <!-- Modal -->
+<!-- <div class="modal fade" id="mapModalMobile" tabindex="-1" role="dialog" aria-labelledby="mapModalMobile" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapModalMobileTitle">{{location.address}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="map"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Mbyll</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+  <!-- <script src="{% static 'main_app/js/vehicle_info_popup.js' %}"></script> -->
+  <script src="{% static 'general/js/location.js' %}"></script>
+</div>
+
+
+{% endblock %}

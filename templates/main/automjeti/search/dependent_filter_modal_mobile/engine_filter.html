@@ -1,0 +1,21 @@
+<div class="" id="engineModalBody">
+  <div class="row">
+    {% if engines|length > 0 %}
+    {% if engines|length > 2 %}
+    {% for option in engines %}
+    <div class="col">
+      <button onclick="filterEngine('{{option.name}}')" class="btn btn-link">{{option.name}}</button>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for option in engines %}
+    <div class="col-4 m-auto">
+      <button onclick="filterEngine('{{option.name}}')" class="btn btn-link cutoff-text">{{option.name}}</button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% else %}
+    <p class="ml-4 font-weight-bolder">Zgjidh modelin e makines</p>
+    {% endif %}
+  </div>
+</div>

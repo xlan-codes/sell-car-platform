@@ -1,0 +1,41 @@
+{% extends "../base.html" %}
+
+    {% block links %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'user_account/style/general.css' %}" type="text/css"/>
+    <script src="{% static 'user_account/js/compare.js' %}"></script>
+    {% endblock %}
+
+    {% block body_section %}
+    <div class="">
+        <div class="container mb-4 mt-4">
+            <!-- {% include './title.html' %} -->
+    
+            <div class="row mt-4 mb-4">
+                <div class="col-2 mt-3 mr-0 d-none d-md-block">
+                    <div id="compareLink" class="row border rounded-left while-container">
+                        <!-- <a id="compareLink" class="m-auto black-link category-name p-1" href="getComparables();">Krahaso</a> -->
+                    </div>
+                    <div class="row border rounrounded-leftded while-container">
+                        <a class="m-auto black-link category-name p-1" href="{% url 'saved_vehicle' %}">Te ruajtura</a>
+                    </div>
+                    <div class="row border rounded-left while-container">
+                        <a class="m-auto black-link category-name p-1" href="{% url 'manage_ad' %}">Reklamime</a>
+                    </div>
+                    <div class="row border rounded-left while-container">
+                        <a class="m-auto black-link category-name p-1" href="{% url 'user_profile' %}">Profili</a>
+                    </div>
+                </div>
+                <div class="col-8 ml-0 rounded while-container d-none d-sm-block">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        generateLink();
+    </script>
+    {% endblock %}

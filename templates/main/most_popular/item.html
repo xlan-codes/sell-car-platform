@@ -1,0 +1,18 @@
+{% load static %}
+
+{% for item in items %}
+<div class="item" id="{{item.name}}">
+    <div class="m-4 center-text">
+        {% if item.photo.0.photo %}
+        <img src="{{item.photo.0.photo}}" class="img-responsive img-fluid resize-img" alt="img"></a></br>
+        {% else %}
+        <img src="{% static 'general/img/not_available.png' %}" class="img-responsive img-fluid resize-img" alt="img"></a></br>
+        {% endif %}
+        <a href="{% url 'main_app:vehicle' %}?id={{item.vehicle.id}}" class="font-weight-bold">
+            <p class="card-link">{{item.vehicle.engine_type.model.make}}</p>
+            <p class="card-lik">{{item.vehicle.engine_type.model}} {{item.vehicle.engine_type.name}}</p>
+            <p class="card-lik">{{item.vehicle.production_year}}</p>
+        </a>
+    </div>
+</div>
+{% endfor %}

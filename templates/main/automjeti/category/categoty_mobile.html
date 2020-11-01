@@ -1,0 +1,58 @@
+{% extends "../../../base.html" %} {% load static %} 
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'main_app/style/category.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+{% block body_section %}
+
+
+<div class="row">
+    <div class="col ">
+        <h3 class="makinatereja">Makinat e Reja per Shitje</h3>
+        <!-- <label class="sort makinatereja"> Rendit:</label>
+            <select name="numbers" id="numbers" class="mb-3">
+                <option value="Price Low to Hight">Nga Cmimi Ulet te me i Larti</option>
+                <option value="Price Hight to Low">Nga Cmimi Lart te me i Uleti</option>
+                <option value="Make: A to Z">Sheno: A to Z</option>
+                <option value="Make: Z to A">Sheno: Z to A</option>
+                <option value="Year: New to Old">Viti: Nga e Re te e Vjeter</option>
+                <option value="Year: Old to New">Viti: Nga e Vjeter te e Re </option>
+            </select> -->
+             
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="filterdCategoryVehicle" class="row">
+                    {% include './filtered_field_mobile.html' %}
+                </div>
+            </div>      
+        </div>
+            
+
+              <!-- <div class="row">
+                {% for new in vehicle %}
+                <div class="col-3 mb-3">
+                  <div class="card mb-1">
+                    <img
+                      src="{% static 'main_app/img/makinaa.png' %}"
+                      class="m-auto image"
+                    />
+                    <a class="dropdown-divider" href="#"></a>
+                    <span class="card-title m-auto"> {{new.model}} </span>
+                    <a href="#" class="btn btn-primary inventory m-auto m-2"
+                      >See inventory</a
+                    >
+                  </div>
+                </div>
+                {% endfor %}
+              </div> -->
+            
+        
+    </div>
+
+
+<script src="{% static 'main_app/js/category.js' %}"></script>
+{% endblock %}

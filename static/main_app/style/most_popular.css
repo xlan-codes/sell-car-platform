@@ -1,0 +1,22 @@
+
+
+.items {
+  display: flex;
+  overflow-x: auto;
+}
+
+.items .item {
+  max-width: 18rem;
+  height: auto;
+  background: white;
+  margin: 0.5rem;
+  border-style: groove;
+}
+
+.most_popular {
+  text-align: center;
+}
+
+.resize-img {
+  max-width: 12rem !important;
+}

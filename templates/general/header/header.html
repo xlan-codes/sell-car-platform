@@ -1,0 +1,68 @@
+{% block links %} {% load static %}
+<!-- <link rel="stylesheet" href="{% static 'general/style/header.css' %}" /> -->
+{% endblock %} {% block header %}
+<header>
+  <div class="header mb-4">
+    <div class="row upperHeader">
+      <div class="col-sm-1 m-auto">
+        <!-- <a href="/" class="">
+            <img
+            class="img-responsive img-fluid w-50"
+            src="{% static 'general/img/logo_temp.png-test' %}"
+            alt="logo"
+          />
+        </a> -->
+      </div>
+      <div class="col-sm-8 mr-auto">
+        <div class="container">
+          <div class="row pt-1 pb-2">
+            <div class="col-md-2">
+              <span><a onclick="setVehicleType('car')" href="/" class="white-link headerFirst">Makina & SUVs</a></span>
+            </div>
+            {% for type in vehicle_types %}
+            {% if type.tag == 'car' %}
+            {% else %}
+            <div class="col-md-2">
+              <span><a onclick="setVehicleType('{{type.tag}}')" href="/vehicle_type_templates/secondary?type={{type.tag}}" class="white-link headerFirst">{{type}}</a></span>
+            </div>
+            {% endif%}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row lowerHeader">
+      <div class="col-3">
+        <!-- <a href="/" class="">
+            <img
+            class="img-responsive img-fluid stack-top box-img main-logo"
+            src="{% static 'general/img/logo_temp.png' %}"
+            alt="logo"
+          />
+        </a> -->
+      </div>
+      <div class="col-4 mr-auto headerFont">
+        <span class="ml-3 mr-4"><a href="/search" class="white-link">Bli automjete</a></span>
+        <span><a href="/shitje" class="white-link">Shit automjete <img class="img-responsive img-fluid free-icon" src="{%static 'general/img/free-tag-icon.png'%}"/></a></span>
+      </div>
+      <div class="col-3 m-auto headerFont">
+        {% if user.is_authenticated %}
+        <button class="btn btn-link white-link mr-3" type="button" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profili im
+        </button>
+        <div class="dropdown-menu" aria-labelledby="profileDropdown">
+          <a class="dropdown-item" href="{% url 'user_profile' %}" class="white-link">Profili</a>
+          <!-- <a class="dropdown-item" href="{% url 'compare_vehicle' %}" class="white-link">Krahaso</a> -->
+          <a class="dropdown-item" href="{% url 'manage_ad' %}" class="white-link">Reklama</a>
+          <a class="dropdown-item" href="{% url 'saved_vehicle' %}" class="white-link">Te ruajtura</a>
+          <a class="dropdown-item" href="{% url 'logout' %}" class="white-link">Dil nga profili</a>
+        </div>
+        {% else %}
+        <span class="mr-3"><a href="/accounts/login" class="white-link">Login</a></span>
+        <span><a href="/accounts/signup" class="white-link">Register</a></span>  
+        {% endif %} 
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}

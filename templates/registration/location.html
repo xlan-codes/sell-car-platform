@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block links %}
+
+{{form.media}}
+
+{% endblock %}
+{% block nav %}
+
+{% if form.errors %}
+{% if form.errors.phone %}
+<p class="error_msg">Vendosni numrin e sakte te celularit!</p>
+{% elif form.errors.password2 %}
+<p class="error_msg">Rishkruani Password-in: <br>
+  Password-et duhen te jene te njejte,<br>
+  Duhet te kene minimalisht 8 karaktere,<br>
+  Duhet te kene nderthurje te shkronjave dhe numrave.
+</p>
+{% endif %}
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Your account doesn't have access to this page. To proceed,
+  please login with an account that has access.</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+<form id="location-form" method="POST">
+  {% csrf_token %}
+    <div class="row mb-4">
+      <div class="col-3"></div>
+      <div class="col-6 center-text">
+        {{form.as_p}}
+        <input class="btn btn-secondary rounded" type="submit" value="Dergo">
+      </div>
+      <div class="col-3"></div>
+    </div>
+</form>
+{% else %}
+
+<meta http-equiv="REFRESH" content="0;url={% url 'user_profile' %}">
+
+{% endif %}
+
+<script src="{% static 'general/js/location.js' %}"></script>
+{% endblock %}

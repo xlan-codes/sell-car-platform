@@ -1,0 +1,125 @@
+
+.icon-size {
+    width: 1.7em;
+}
+
+.container-background {
+    background-color: white;
+}
+
+.inquiry-background {
+    background-color: white;
+    color: black;
+}
+
+.superscript {
+    color: rgb(192, 189, 189);
+}
+
+.sticky-under-nav {
+    z-index: 2000;
+}
+
+.sticky-offset {
+    top: 85px;
+}
+
+.input-field {
+    background-color: #f2f2f2;
+}
+
+.input-field::placeholder {
+   margin-right: 0.5em;
+}
+
+.rounded::after {
+    border-color: red;
+}
+
+.rounded-submit {
+    background-color: #57bb24;
+}
+
+.Vendodhje{
+    margin-left:10rem;
+    margin-top:-2rem;
+
+}
+.zgjidh{
+    margin-left:15rem;
+    margin-top:-2rem;
+}
+
+.vendodhja{
+    margin-left:14rem;
+    margin-top:-3rem;
+}
+
+.done{
+    border-radius: 5px;
+    margin-top: 2px;
+    color:white;
+    background-color: blue;
+    margin-right: 60%;
+    
+}
+/* .x{
+    margin-bottom:10px;
+}
+.result{
+    margin-left: -25px;
+} */
+
+.search{
+    width:2rem;
+    height: 2rem;
+}
+
+.sticky-bottom {
+    top: 45rem;
+}
+
+.option-divider {
+    margin-bottom: 5.5rem!important;
+}
+
+.move-right {
+    margin-left: 2.5rem!important;
+}
+
+.filter-font {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+}
+
+.filter-background {
+    background-color: #f1f1f1;
+}
+.pastro{
+    margin-right:-9rem;
+}
+.apliko{
+    margin-left:8.2rem;
+}
+/* .shitesi{
+    margin-left:9rem;
+}
+.ngjyraejashtme{
+    margin-left:4rem;
+}
+.drejtimi{
+    margin-left:8.5rem;
+}
+.cilindrata{
+    margin-left:7.5rem;
+}
+.transmisioni{
+    margin-left:8rem;
+}
+.kapaciteti{
+    margin-left:9rem;
+} */
+
+.filter_mobile{
+    margin-left:12rem;
+}

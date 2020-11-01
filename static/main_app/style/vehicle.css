@@ -1,0 +1,64 @@
+.icon-size {
+    width: 1.7em;
+}
+
+.container-background {
+    background-color: white;
+}
+
+.inquiry-background {
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.superscript {
+    color: rgb(192, 189, 189);
+}
+
+.sticky-under-nav {
+    z-index: 2000;
+}
+
+.sticky-offset {
+    top: 85px;
+}
+
+.input-field {
+    background-color: #f2f2f2;
+}
+
+.input-field::placeholder {
+   margin-right: 0.5em;
+}
+
+.rounded::after {
+    border-color: red;
+}
+
+.rounded-submit {
+    background-color: #57bb24;
+}
+
+.save{
+    color:red;
+    padding:5px 10px;
+    background-color: red;
+    color: white;
+    border:none;
+    cursor:pointer;
+    border-radius: 4px;
+    margin-left: 0.6em;
+}
+
+.seller-icon {
+    max-width: 8.5rem;
+}
+
+.seller-title {
+    font-size: 1.2rem;
+}
+
+#map {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+  }

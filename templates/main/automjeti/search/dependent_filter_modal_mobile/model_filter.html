@@ -1,0 +1,21 @@
+<div class="" id="modelModalBody">
+  <div class="row">
+    {% if models|length > 0 %}
+    {% if models|length > 2 %}
+    {% for option in models %}
+    <div class="col">
+      <button onclick="filterModel('{{option}}')" class="btn btn-link">{{option}}</button>
+    </div>
+    {% endfor %}
+    {% else %}
+    {% for option in models %}
+    <div class="col-4 m-auto">
+      <button onclick="filterModel('{{option}}')" class="btn btn-link cutoff-text">{{option}}</button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% else %}
+    <p class="ml-4 font-weight-bolder">Zgjidh marken e makines</p>
+    {% endif %}
+  </div>
+</div>

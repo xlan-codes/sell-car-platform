@@ -1,0 +1,11 @@
+<form id="map-vehicle-form" method="POST">
+    {% csrf_token %}
+    <div class="row mb-4">
+        <div class="col-3"></div>
+        <div class="col-6 center-text">
+            {{location.as_p}}
+            <input class="btn btn-secondary rounded" type="submit" value="Dergo">
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>

@@ -1,0 +1,19 @@
+{% extends "../base.html" %}
+
+{% block title %} Automjeti {% endblock %} 
+
+{% block links %}
+{% load static %}
+<script src="{% static 'main_app/js/scripts.js' %}"></script>
+{% endblock %}
+
+{% block body_section %}
+
+  {% include './header/main_header.html' with items=items %}
+  {% include './sell_car_link/sell_car_link.html' %}
+  {% include './blog/blog.html' %}
+  {% include './most_popular/most_popular.html' with items=items %}
+  {% include './partneret/partneret.html' %}
+
+  <script src="{% static 'main_app/js/onready.js' %}"></script>
+{% endblock %}

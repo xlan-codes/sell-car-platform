@@ -1,0 +1,106 @@
+{% extends '../main_mobile.html' %}
+{% block body %}
+
+<!-- Display Name -->
+<div class="row mt-2">
+    <div class="col-8 ml-2">
+        <span class="category-name">Emri</span>
+    </div>
+    <div class="col-3">
+        <span> <a href="{% url 'update_userinfo' %}" class="btn-link">Ndrysho</a> </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 m-auto">
+        {% if userdata.firstname or lastname %}
+        <span> {{userdata.firstname}} {{userdata.lastname}} </span>
+        {% else %}
+        <span>Asnje emer</span>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="col ml-2 mr-2">
+        <hr/>
+    </div>
+</div>
+<!-- Personal Info -->
+<div class="row">
+    <div class="col-8 ml-2">
+        <span class="category-name">Informacione personale</span>
+    </div>
+    <div class="col-3">
+        <span> <a href="/user/update" class="btn-link">Ndrysho</a> </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 ml-2 mt-2">
+        <div class="row mb-2">
+            <div class="col-6 mr-auto">
+                <span>Emer</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span class="category-name">{{userdata.firstname}}</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 mr-auto">
+                <span>Mbiemer</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span class="category-name">{{userdata.lastname}}</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 mr-auto">
+                <span>Telefon</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span class="category-name">{{userdata.phone}}</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 mr-auto">
+                <span>Rregjistruar</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span class="category-name">{{userdata.joined|date:"d-m-Y : G:i"}}</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-6 mr-auto">
+                <span>Email</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span class="category-name">{{userdata.email}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mr-auto">
+                <span>Password</span>
+            </div>
+            <div class="col-6 ml-auto">
+                <span>********</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Notification -->
+<div class="row">
+    <div class="col ml-2 mr-2">
+        <hr/>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-3 ml-2">
+        <span class="category-name">Njfotime</span>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-6 m-auto mt-2">
+        <input type="checkbox" id="registerNotificationCheckbox" class="" name="registerNotification" value="registerNotification"/>
+        <label for="registerNotification">Merr Njfotime</label>
+    </div>
+</div>
+
+{% endblock %}

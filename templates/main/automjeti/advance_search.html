@@ -1,0 +1,108 @@
+{% extends '../../base.html' %}
+{% load static %}
+{% load humanize %}
+{% block links %}
+<link
+  rel="stylesheet"
+  href="{% static 'main_app/style/search.css' %}"
+  type="text/css"
+/>
+<link
+  rel="stylesheet"
+  href="{% static 'general/style/multi_line_overflow.css' %}"
+  type="text/css"
+/>
+{% endblock %}
+
+{% block body_section %}
+<div class="container container-large mt-2 decreaseFont background">
+    <div class="row">
+        <!-- Filter options start -->
+        <div class="col-lg-2 pr-2 col-mini">
+            <div class="container-fluid rounded whitebox border shadow mb-4 increase-container-size">
+                <div id="filter_fields" class="d-none d-lg-block">
+                    {% include "./search/filter_fields.html" with filters=filters %}
+                </div>
+            </div>
+        </div>
+        <!-- Filter option end -->
+        <div class="col-lg-10">
+            <div class="container-fluid">
+                <!-- Search inner header start -->
+                <div class="row mb-3">
+                    <div class="col-lg-12">
+                        <h4 class="d-inline font-weight-normal">Makina te reja dhe te perdorura</h4>
+                    </div>
+                </div>
+                <div class="row mb-1 shadow-lg rounded whitebox">
+                    <div class="col-lg-12">
+                        <div class="container-fluid">
+                            <div class="row mt-2 mb-2">
+                                <div class="col-lg-6 m-auto">
+                                    <h6>Subscribe here for whatever</h6>
+                                </div>
+                                <div class="col-lg-4 m-auto">
+                                    <input type="email" placeholder="Enter email"/>
+                                </div>
+                                <div class="col-lg-2">
+                                    <button class="btn btn-primary">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-lg-8">
+                        <div class="pagination heavy-link ml-auto">
+                            <a href="#">&laquo;</a>
+                            <a href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">&raquo;</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 ml-auto">
+                        <div class="mt-2">
+                            <!-- <label for="sort">Listo nga</label> -->
+                            <select onchange="changeOrder(this)" class="sorter rounded" name="sort" id="sort">
+                                <option value="price">Cmimi Min</option>
+                                <option value="-price">Cmimi Max</option>
+                                <option value="mileage">Kilomentrazhi Min</option>
+                                <option value="-mileage">Kilomentrazhi Max</option>
+                                <option value="production_year">Viti Min</option>
+                                <option value="-production_year">Viti Max</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" id="displayNumberDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Display:   
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="displayNumberDropdown">
+                                <a class="dropdown-item" href="">10</a>
+                                <a class="dropdown-item" href="">15</a>
+                                <a class="dropdown-item" href="">20</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 d-none d-lg-block m-auto">
+                        Buy online
+                    </div> -->
+                </div> <!-- Search inner header end -->
+                <hr/>
+                <!-- Search results start -->
+                <!-- Will loop here -->
+                <div id="filter-result">
+                    {% include "./search/filtered_search.html"  %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script src="{% static 'main_app/js/filter.js' %}"></script> -->
+{% endblock %}

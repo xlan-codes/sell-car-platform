@@ -1,0 +1,600 @@
+{% extends '../../base.html' %}
+{% load static %}
+{% load humanize %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'main_app/style/search.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'main_app/style/load_more.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'general/style/multi_line_overflow.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'main_app/style/advance_mobile.css' %}" type="text/css" />
+{% endblock %}
+
+{% block body_section %}
+<div class="subscribe-secion sticky-top sticky-bottom center-text">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobileFilterModal">Filter</button>
+</div>
+<div class="container mt-2 decreaseFont background">
+    <div class="row">
+        <div class="col-12">
+            <div class="container-fluid">
+                <!-- Search inner header start -->
+                <div class="row mb-3">
+                    <div class="col-12 center-text">
+                        <h4 class="d-inline font-weight-normal">Makina te reja dhe te perdorura</h4>
+                    </div>
+                </div>
+                <hr />
+                <!-- Search results start -->
+                <!-- Will loop here -->
+                <div id="filter-result">
+                    {% include "./search/filtered_search_mobile.html" with list=list count=count %}
+                </div>
+                <div class="row option-divider">
+                    <div class="col">
+                        <a href="#" id="loadMore">Trego me shume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="subscribe-secion filter_mobile">
+    <button class="modal-btn sticky-top">Filter</button>
+</div> -->
+<div class="modal fade filter-background" id="mobileFilterModal" tabindex="-1" role="dialog" aria-labelledby="mobileFilterModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row mb-2 ml-2 border-bottom pb-3 pt-3">
+                    <!-- <div class="col-5 ml-4">
+                        <button type="button" class="done">Filtro</button>
+                    </div> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5">
+                        {{count}} <span class="filter-font"> resultate</span>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" onclick="resetFilters()" class="btn btn-link ml-2 filter-font">Pastro</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Shitesi</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseShitesi"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="collapse" id="collapseShitesi" aria-labelledby="dropdownMenuButton">
+                        <div class="">
+                            {% for option in filters.sellers %}
+                            <label class="form-check-label move-right">
+                                <input id="{{option.id}}" type="checkbox" class="form-check-input seller-options" checked
+                                    value="{{option}}">{{option}}
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <div class="col apliko">
+                            <button type="button" class="btn btn-primary" onclick="filterSeller()">Apliko</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Marka</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseMarka"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseMarka" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% if filters.makes.total > 2 %}
+                        {% for option in filters.makes %}
+                        <div class="col">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% for option in filters.makes %}
+                        <div class="col-4 m-auto">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link cutoff-text">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Modeli</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseModeli"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseModeli" aria-labelledby="dropdownMenuButton">
+                    <div id="includedModelModal">
+                        {% include './search/dependent_filter_modal_mobile/model_filter.html' %}
+                    </div>
+                    <!-- {% if filters.makes.total > 2 %}
+                        {% for option in filters.makes %}
+                        <div class="col">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% for option in filters.makes %}
+                        <div class="col-4 m-auto">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link cutoff-text">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% endif %} -->
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Motorri</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown ">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseMotorri"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseMotorri" aria-labelledby="dropdownMenuButton">
+                    <div id="includedEngineModal">
+                        {% include './search/dependent_filter_modal_mobile/engine_filter.html' %}
+                    </div>
+                    <!-- <div class="row">
+                        {% if filters.makes.total > 2 %}
+                        {% for option in filters.makes %}
+                        <div class="col">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        {% for option in filters.makes %}
+                        <div class="col-4 m-auto">
+                            <button onclick="filterMake('{{option}}')" class="btn btn-link cutoff-text">{{option}}</button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div> -->
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Viti</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown ">
+                            <button class="btn  btn-link dropdown-toggle " type="button" data-target="#collapseViti"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseViti" aria-labelledby="dropdownMenuButton">
+                    <div class="row center-text">
+                        <div class="modal-body" id="yearModalBody">
+                            <div class="modal_type_three form-group m-auto">
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="filter-input-min year">Viti Min.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto ">
+                                    <div class="col m-auto">
+                                        <input id="min-year" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="">Viti Max.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <input id="max-year" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button onclick="filterYear()" type="button" class="btn btn-primary">Apliko</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Monedha</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseMonedhe"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="collapse" id="collapseMonedhe" aria-labelledby="dropdownMenuButton">
+                        <div class="">
+                            {% for option in filters.currencies %}
+                            <label class="form-check-label move-right">
+                                <input id="{{option.id}}" type="checkbox" class="form-check-input currency-options" checked
+                                    value="{{option}}">{{option}}
+                            </label>
+                            {% endfor %}
+                        </div>
+                        <div class="col apliko">
+                            <button type="button" class="btn btn-primary" onclick="filterCurrency()">Apliko</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Cmimi</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseCmimi"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseCmimi" aria-labelledby="dropdownMenuButton">
+                    <div class="row center-text">
+                        <div class="modal-body" id="priceModalBody">
+                            <div class="modal_type_three form-group">
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="filter-input-min">Cmimi Min.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <input id="min-price" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="">Cmimi Max.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <input id="max-price" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button type="button" onclick="filterPrice()" class="btn btn-primary">Apliko</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Trupi</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseTrupi"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseTrupi" aria-labelledby="dropdownMenuButton">
+                    <div class="row center-text">
+                        {% for option in filters.bodies %}
+                        <label class="form-check-label d-block move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input body-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterBody()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Ngjyra e jashme</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseJashtme"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseJashtme" aria-labelledby="dropdownMenuButton">
+                    <div class="row center-text">
+                        {% for option in filters.exColor %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input exColor-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterExColor()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Ngjyra e brendshme</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseBrendshme"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseBrendshme" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.exColor %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input inColor-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterInColor()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Kilometrazhi</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseKilometrazhi"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseKilometrazhi" aria-labelledby="dropdownMenuButton">
+                    <div class="row center-text">
+                        <div class="modal-body" id="mileageModalBody">
+                            <div class="modal_type_three form-group">
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="filter-input-min">Min.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <input id="min-mile" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <label class="">Max.</label>
+                                    </div>
+                                </div>
+                                <div class="row m-auto">
+                                    <div class="col">
+                                        <input id="max-mile" type="number" class="rounded" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <button type="button" onclick="filterMileage()" class="btn btn-primary">Apliko</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Drejtimi</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseDrejtimi"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseDrejtimi" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.drivetrains %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input drivetrain-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterDrivetrain()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Karburanti</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseKarburanti"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseKarburanti" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.fuels %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input fuel-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterFuel()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Cilindrata</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseCilindrata"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseCilindrata" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.cylinders %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input cylinder-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterCylinder()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Transmisioni</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle" type="button" data-target="#collapseTransmisioni"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseTransmisioni" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.transmissions %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input transmission-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterTransmission()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Kapaciteti</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle " type="button" data-target="#collapseKapaciteti"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseKapaciteti" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.seating_caps %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input seating_cap-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterSeatingCap()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row border-bottom center-text">
+                    <div class="col-5 mr-auto">
+                        <span class="filter-font">Dyer</span>
+                    </div>
+                    <div class="col-5 ml-auto">
+                        <div class="dropdown">
+                            <button class="btn  btn-link dropdown-toggle " type="button" data-target="#collapseDyer"
+                                data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                                Zgjidh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseDyer" aria-labelledby="dropdownMenuButton">
+                    <div class="row">
+                        {% for option in filters.doors %}
+                        <label class="form-check-label move-right">
+                            <input id="{{option.id}}" type="checkbox" checked class="form-check-input door-options"
+                                value="{{option}}">{{option}}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-2 apliko">
+                        <button type="button" onclick="filterSeatingCap()" class="btn btn-primary">Apliko</button>
+                    </div>
+                </div>
+                <div class="row mb-2 mt-2">
+                    <div class="col-12 center-text">
+                        <span>
+                            <input type="text" class="filtersOptionChangeToAll w-75 rounded"
+                                onkeypress="searchByKeywordEnter(event)" style="border-color: #e3e3e3;"
+                                id="keywordFilterOption" placeholder="Kerko fjale kyc">
+                            <button class="btn btn-link" onclick="searchByKeyword()">
+                                <img src="{% static '\general\img\Image22.png' %}" class="search" alt="search">
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script src="{% static 'main_app/js/filter.js' %}"></script> -->
+<script src="{% static 'main_app/js/load_more.js' %}"></script>
+{% endblock %}

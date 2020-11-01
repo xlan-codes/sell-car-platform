@@ -1,0 +1,87 @@
+{% block links %} {% load static %}
+<link rel="stylesheet" href="{% static 'general/style/header.css' %}" />
+{% endblock %} {% block header %}
+<header>
+  <div class="container-fluid mb-0 header sticky-top">
+      <div class="row upperHeader pb-2">
+          <div class="col-5 m-0">
+              <div class="dropdown">
+                  <button class="btn btn-link dropdown-toggle white-link" type="button" id="car_truck_suv_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Cars, Trucks & SUVS
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="car_truck_suv_dropdown">
+                    <a onclick="setVehicleType('car')" href="/" class="dropdown-item">Makina & SUVs</a>
+                    {% for type in vehicle_types %}
+                    {% if type.tag == 'car' %}
+                    {% else %}
+                      <a onclick="setVehicleType('{{type.tag}}')" href="/vehicle_type_templates/secondary?type={{type.tag}}" class="dropdown-item">{{type}}</a>
+                    {% endif%}
+                    {% endfor %}
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row lowerHeader">
+          <div class="col-3">
+
+          </div>
+          <div class="col-6">
+              <a class="link-unstyled" href="/"><span><b><h3 class="mt-2 ml-1">Automjeti</h3></b></span></a>
+            <!-- <a href="/" class="">
+                <img
+                class="img-responsive img-fluid main-logo-mobile ml-2"
+                src="{% static 'general/img/icon.png' %}"
+                alt="logo"
+              />
+            </a> -->
+          </div>
+          <div class="col-3">
+            <nav class="navbar navbar-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            
+          </div>
+      </div>
+      <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-transparent p-4 font-weight-bold">
+                <div class="row border-bottom border-secondary">
+                    <span class=""><a class="black-link" href="">Shit automjete</a></span>
+                </div>
+                <div class="row border-bottom border-secondary">
+                    <div class="dropdown">
+                        <span><button class="blank border-0" type="button" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">Automjet i ri</button></span>
+                        <div class="collapse" id="collapseCategories">
+                            <a class="dropdown-item" href="/">Cars, Trucks & SUVS</a>
+                            {% for type in vehicle_types %}
+                            {% if type.tag == 'car' %}
+                            {% else %}
+                            <a href="/vehicle_type_templates/secondary?type={{type.tag}}" class="dropdown-item">{{type}}</a>
+                            {% endif%}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="row border-bottom border-secondary">
+                    <span class=""><a class="black-link" href="{% url 'user_profile' %}">Profili</a></span>
+                </div>
+                <div class="row border-bottom border-secondary">
+                    <span class=""><a class="black-link" href="{% url 'logout' %}">Dil nga profili</a></span>
+                </div>
+                {% else %}
+                <div class="row border-bottom border-secondary">
+                    <span class=""><a class="black-link" href="{% url 'login' %}">Logohu</a></span>
+                </div>
+                {% endif %} 
+                <div class="row border-bottom border-secondary">
+                    <span class=""><a class="black-link" href="">Lajme & Risi</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</header>
+{% endblock %}

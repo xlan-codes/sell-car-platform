@@ -1,0 +1,9 @@
+<div class="modal_type_one">
+    <div class="form-check">
+        {% for option in options %}
+        <label class="form-check-label d-block">
+            <input type="checkbox" class="form-check-input" value="{{option}}">{{option}}
+        </label>
+        {% endfor %}
+    </div>
+</div>

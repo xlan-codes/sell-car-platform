@@ -1,0 +1,10 @@
+{% load static %} {% for new in vehicle %}
+<div class="col-3 mb-3">
+  <div class="card mb-1">
+    <img src="{% static 'main_app/img/makinaa.png' %}" class="m-auto img-in-cat" />
+    <a class="dropdown-divider" href="#"></a>
+    <span class="card-title m-auto"> {{new.model}} </span>
+    <a href="#" class="btn btn-primary inventory m-auto m-2">Shiko Inventarin</a>
+  </div>
+</div>
+{% endfor %}

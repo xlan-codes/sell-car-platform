@@ -1,0 +1,418 @@
+{% extends '../../base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block links %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+
+{% block body_section %}
+<div class="container-fluid">
+    <form>
+        <div class="row m-4">
+            <div class="col-sm-12">
+                <p style="font-size:1.3rem; color:black; text-align: left;"> Ngarkoni fotot duke filluar me foton kryesore. Më pas zgjidhni kategorinë dhe shtoni informacionin rreth automjetit.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <hr>
+            </div>
+            <div class="col-sm-6">
+                <h2 style="color:red; text-align: center;"> Informacion bazik </h2>
+            </div>
+            <div class="col-sm-3">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Kategoria: </label>
+                                <div class="select">
+                                    {% render_field form.type class="form-control" placeholder="Kategoria" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Marka *: </label>
+                                <div class="select">
+                                    {% render_field form.make class="form-control" placeholder="Ex: Audi" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Modeli *: </label>
+                                <div class="select">
+                                    {% render_field form.model class="form-control" placeholder="Ex: A4" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Monedha *: </label>
+                                <div class="select">
+                                    {% render_field form.currency class="form-control" placeholder="Ex: Euro" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Cmimi € *: </label>
+                                <div class="select">
+                                    {% render_field form.price class="form-control" placeholder="Cmimi ne Euro" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Viti *: </label>
+                                <div class="select">
+                                    {% render_field form.production_year class="form-control" placeholder="Viti i Prodhimit" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Titulli *: </label>
+                                <div class="select">
+                                    {% render_field form.extra_name class="form-control" placeholder="Shtoni pjesen e mbetur te titullit" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="exampleFormControlInput1">Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="exampleFormControlInput1">Perserit Email address</label>
+                                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">  
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="from-group m-2">
+                                <label for="exampleFormControlFile1">Ngarkoni deri në 15 foto. Rradhitini pasi të jenë ngarkuar të gjitha fotot.* </label>
+                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="row m-4">
+                <div class="col-md-12">
+                    <h2 style="font-size:1.3rem; color:black; text-align: left;"> Keni më shumë kohë? Përmirësoni postimin tuaj!
+                    </h2>
+                </div>
+            </div>
+            <div class="row m-4">
+                <div class="col-md-12">
+                    <p style="font-size:1.3rem; color:black; text-align: left;"> Jepni më shumë informacion dhe rendituni më mirë në rezultatet e kërkimit.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <hr>
+                </div>
+                <div class="col-sm-6">
+                    <h2 style="color:red; text-align: center;"> Informacion rreth automjetit </h2>
+                </div>
+                <div class="col-sm-3">
+                    <hr>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Gjendja *: </label>
+                                <div class="select">
+                                    {% render_field form.condition_type class="form-control" placeholder="Ex: E Re" %}
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Tipi i Motorrit *: </label>
+                                <div class="select">
+                                    {% render_field form.engine_type class="form-control" placeholder="Ex: 2.0 TDI" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Diferenciali *: </label>
+                                <div class="select">
+                                    {% render_field form.drivetrain_type class="form-control" placeholder="Ex: FWD" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Kilometrazhi *: </label>
+                                <div class="select">
+                                    {% render_field form.mileage class="form-control" placeholder="Ex: Kilometrat" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Transmetuesi *: </label>
+                                <div class="select">
+                                    {% render_field form.transmission_type class="form-control" placeholder="Ex: Manuale" %}
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Tipi *: </label>
+                                <div class="select">
+                                    {% render_field form.body_type class="form-control" placeholder="Ex: Sedan" %}
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Ngjyra e jashtme *: </label>
+                                <div class="select">
+                                    {% render_field form.exterior_color class="form-control" placeholder="Ex: Gri" %}
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Ngjyra e brendeshme *: </label>
+                                <div class="select">
+                                    {% render_field form.interior_color class="form-control" placeholder="Ex: Gri" %}
+                                </div>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Numri i dyerve *: </label>
+                                <div class="select">
+                                    {% render_field form.door_type class="form-control" placeholder="Ex: 5" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="category"> Karburanti *: </label>
+                                <div class="select">
+                                    {% render_field form.fuel_type class="form-control" placeholder="Ex: Benzine" %}
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Bluetooth
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Tavan Panoramik
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Sensor Parkimi
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Kompjuter Bordi
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>ABS
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Ngrohje ne sendilje
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>MP3
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>ESP
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Kamera
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Dritare elektrike
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Sensor Shiu
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Sistem Vetfrenimi
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Sistem Start-stop
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Navigator
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-check">
+                                <label class="form-check-label" for="check1">
+                                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Cd Player
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row m-2">
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label for="validationTextarea">Pershkrimi </label>
+                                    {% render_field form.description rows="3" class="form-control" placeholder="Ex: Demtime ose opsione te tjera..." %}
+                                    <div class="invalid-feedback">
+                                    Thuaj dicka per kete automjet...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <hr>
+            </div>
+            <div class="col-md-2">
+                <h2 style="color:red; text-align: center;"> Kontakt </h2>
+            </div>
+            <div class="col-md-5">
+                <hr>
+            </div>
+        </div>
+        <div class="row m">
+            <div class="col-sm-12">
+                <div class="card border-secondary">
+                    <div class="row m-2">
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="usr"> Emri *: </label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group m-2">
+                                <label for="usr"> Mbiemri *: </label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group m-2">
+                                <label for="phone"> Numri i celularit </label>
+                                <input type="tel" name="phone" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-2">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-secondary float-right">Vazhdo</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

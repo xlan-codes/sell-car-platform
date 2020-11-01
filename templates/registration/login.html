@@ -1,0 +1,106 @@
+{% extends "../base.html" %}
+{% load static %}
+<!-- <link rel="stylesheet" href="{% static 'user_account/style/login.css' %}" type="text/css"/> -->
+
+{% block links %}
+<link rel="stylesheet" href="{% static 'user_account/style/login.css' %}" type="text/css" />
+<link rel="stylesheet" href="{% static 'user_account/style/login_footer.css' %}" type="text/css" />
+{% endblock %}
+
+{% block login %}
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>
+  <!-- Your account doesn't have access to this page. To proceed, please login with
+  an account that has access. -->
+  Ju nuk keni akses ne kete faqe!
+</p>
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+{% endif %}
+
+{% if not user.is_authenticated %}
+<!-- <h2 class="center-text"><b>Logohu</b></h2> -->
+<!-- <form class="form-conteiner center-text mb-4" method="post" action="{% url 'login' %}"> -->
+  <img class="img-responsive img-fluid mb-3" src="{% static 'general/img/header1.jpg' %}" alt="next" />
+<form class="mb-4" method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <div class="container-fluide  ">
+    <div class="row  ">
+      <div class="col-md-3 m-auto">
+        <div class="card mb-3 card-logohu">
+          <div class="row center-text">
+            <div class="col-md-12 center-text logohu ">
+              <h3>Logohu</h3>
+            </div>
+          </div>
+          <div class="card-body center-text">
+            <div class="input-group form-group ">
+              <div class="input-group-prepend ">
+                <span class="input-group-text "><i class="fas fa-user  "></i></span>
+                <span class="">{{ form.username }} <br /></span>
+              </div>
+            </div>
+            <div class="input-group form-group center-text ">
+              <div class="input-group-prepend ">
+                <span class="input-group-text  "><i class="fas fa-key "></i></span>
+                <span class="center-text">{{ form.password}}</span>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col">
+                <input type="checkbox" /> <b>Me mbaj mend</b>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <input type="submit" value="Login" class="btn btn-primary" />
+                <input type="hidden" name="next" value="{{ next }}" />
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-center links">
+                <b>Nuk keni account?</b>
+                <b><a href="/accounts/signup">Krijo nje</a></b>
+              </div>
+              <div class="d-flex justify-content-center">
+                <b><a href="{% url 'password_reset' %}">Keni harruar password-in?</a></b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row mb-4">
+      <div class="col-6 m-auto">
+      
+        <span><b>Email</b><br /></span>
+        <span class="">{{ form.username }} <br /></span>
+      </div>
+    </div> -->
+    <!-- <div class="row mb-4">
+      <div class="col">
+        <span><b>Password</b><br /></span>
+        <span>{{ form.password}}</span>
+      </div>
+    </div> -->
+
+</form>
+
+{# Assumes you setup the password_reset view in your URLconf #}
+<!-- <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
+
+{% else %}
+<meta http-equiv="REFRESH" content="0;url={% url 'user_profile' %}">
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<div class="modal_type_two">
+    <div class="row">
+        {% if options.total > 2 %}
+        {% for option in options %}
+        <div class="col-md-4">
+        <button onclick="searchModalTwo({{option}})" class="btn btn-link">{{option}}</button>
+        </div>
+        {% endfor %}
+        {% else %}
+        {% for option in options %}
+        <div class="col-md-6">
+            <button onclick="searchModalTwo('{{option}}', '{{filter_type}}')" class="btn btn-link">{{option}}</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+<!-- <script src="{% static 'main_app/js/filter.js' %}"></script> -->

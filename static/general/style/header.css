@@ -1,0 +1,69 @@
+
+a:hover {
+    color: white;
+}
+
+.upperHeader {
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.lowerHeader {
+    background-color :#c00;
+    color: white;
+}
+
+.header {
+    width: 100%;
+    background-size: cover;
+}
+
+.white-link {
+    color: white;
+}
+
+.black-link {
+    color: rgb(131, 130, 130);
+}
+
+.over-div {
+    position: absolute;
+    z-index: 0;
+    bottom: 15px;
+}
+
+.headerFirst{
+    font-size: 0.7rem;
+}
+
+.headerFont {
+    font-size: 1rem;
+}
+
+.box-img{
+    /* width: 100%; */
+    height: 100%;            
+    position: absolute;
+    right: 3em;
+    /* top: 0; */
+    /* left: 0; */
+    /* bottom: 2rem; */
+}
+.stack-top{
+    z-index: 0;
+}
+
+.free-icon {
+    width: 3em;
+    height: auto;
+}
+
+.main-logo {
+    width: 15em;
+    height: auto;
+} 
+
+.main-logo-mobile {
+    width: 5em;
+    height: auto;
+}

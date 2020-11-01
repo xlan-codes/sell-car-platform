@@ -1,0 +1,180 @@
+{% extends '../main_mobile.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'user_account/style/compare.css' %}"/>
+
+<div class="row mt-3 mr-2">
+    <div class="col-4">
+    </div>
+    <div class="col-2">
+        <div id="compareOne">
+            {% if compared.0 %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{{images.0.photo}}" class="img-responsive img-fluid image-resize" alt="img"/>
+            </a>
+            <button type="button" onclick="removeCompare({{compared.0.id}})" class="btn btn-secondary mt-4">Hiq</button>
+            {% else %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareTwo">
+            {% if compared.1 %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{{images.1.photo}}" class="img-responsive img-fluid image-resize" alt="img"/>
+            </a>
+            <button type="button" onclick="removeCompare({{compared.0.id}})" class="btn btn-secondary mt-4">Hiq</button>
+            {% else %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareThree">
+            {% if compared.2 %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{{images.2.photo}}" class="img-responsive img-fluid image-resize" alt="img"/>
+            </a>
+            <button type="button" onclick="removeCompare({{compared.0.id}})" class="btn btn-secondary mt-4">Hiq</button>
+            {% else %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-2">
+        <div id="compareFour">
+            {% if compared.3 %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{{images.3.photo}}" class="img-responsive img-fluid image-resize" alt="img"/>
+            </a>
+            <button type="button" onclick="removeCompare({{compared.0.id}})" class="btn btn-secondary mt-4">Hiq</button>
+            {% else %}
+            <a href="{% url 'saved_vehicle' %}">
+                <img src="{% static 'general/img/add_icon.svg' %}" class="img-responsive img-fluid" alt="img"/>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- {% include './compared_image.html' %} -->
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="row border-bottom mb-2 mt-2">
+            <div class="col-4">
+                <span class="heavy-link">Cmimi</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.price|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.price|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.price|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.price|intcomma}}</span>
+            </div>
+        </div>
+        <div class="row border-bottom mb-2">
+            <div class="col-4">
+                <span class="heavy-link">Kilometrazhi</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.mileage|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.mileage|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.mileage|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.mileage|intcomma}}</span>
+            </div>
+        </div>
+        <div class="row border-bottom mb-2">
+            <div class="col-4">
+                <span class="heavy-link">Harxhimi Qytet</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.consumption_city|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.consumption_city|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.consumption_city|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.consumption_city|default:"x"}}</span>
+            </div>
+        </div>
+        <div class="row border-bottom mb-2">
+            <div class="col-4">
+                <span class="heavy-link">Harxhimi Autostrad</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.consumption_highway|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.consumption_highway|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.consumption_highway|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.consumption_highway|default:"x"}}</span>
+            </div>
+        </div>
+        <div class="row border-bottom mb-2">
+            <div class="col-4">
+                <span class="heavy-link">Harxhimi Comb.</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.consumption_combined|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.consumption_combined|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.consumption_combined|default:"x"}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.consumption_combined|default:"x"}}</span>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4">
+                <span class="heavy-link">Cilindrata</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.0.cylinders|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.1.cylinders|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.2.cylinders|intcomma}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{compared.3.cylinders|intcomma}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    generateLink();
+</script>
+{% endblock %}
